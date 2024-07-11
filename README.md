@@ -1,7 +1,7 @@
 # google2fa
 
 # install
-composer require 
+composer require aventusgroup/google2fa
 
 # usage
 1. Для каждого пользователя необходимо создать и сохранить ключ(он потребуется для проверки кода).
