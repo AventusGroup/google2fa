@@ -1,0 +1,21 @@
+{
+    "name": "aventusgroup/google2fa",
+    "description": "2fa",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Aventusgroup\\Google2fa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mikhail Kudryashov",
+            "email": "mikhail@aventusgroup.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-imagick":  "*",
+        "bacon/bacon-qr-code": "^2.0"
+    }
+}
