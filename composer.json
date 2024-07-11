@@ -1,5 +1,6 @@
 {
     "name": "aventusgroup/google2fa",
+    "minimum-stability": "stable",
     "description": "2fa",
     "type": "library",
     "autoload": {
