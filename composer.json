@@ -3,6 +3,7 @@
     "minimum-stability": "stable",
     "description": "2fa",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Aventusgroup\\Google2fa\\": "src/"
