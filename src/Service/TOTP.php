@@ -31,25 +31,31 @@ class TOTP
         $base32charsFlipped = array_flip(str_split($base32chars));
         $paddingCharCount = substr_count($base32, '=');
         $allowedValues = [6, 4, 3, 1, 0];
+
         if (!in_array($paddingCharCount, $allowedValues)) return false;
+
         for ($i = 0; $i < 4; $i++) {
             if ($paddingCharCount == $allowedValues[$i] &&
-                substr($base32, -( $allowedValues[$i])) != str_repeat('=', $allowedValues[$i])) return false;
+                substr($base32, -($allowedValues[$i])) != str_repeat('=', $allowedValues[$i])) return false;
         }
+
         $base32 = str_replace('=', '', $base32);
         $base32 = str_split($base32);
         $binaryString = '';
-        for ($i = 0; $i < count($base32); $i = $i + 8) {
-            $x = '';
-            if (!in_array($base32[$i], str_split($base32chars))) return false;
-            for ($j = 0; $j < 8; $j++) {
-                $x .= str_pad(base_convert((string)$base32charsFlipped[$base32[$i + $j]], 10, 2), 5, '0', STR_PAD_LEFT);
-            }
-            $eightBits = str_split($x, 8);
-            for ($z = 0; $z < count($eightBits); $z++) {
-                $binaryString .= chr((int)base_convert($eightBits[$z], 2, 10));
-            }
+
+        foreach ($base32 as $char) {
+            if (!isset($base32charsFlipped[$char])) return false;
+
+            $binaryString .= str_pad(base_convert((string)$base32charsFlipped[$char], 10, 2), 5, '0', STR_PAD_LEFT);
         }
-        return $binaryString;
+
+        $binaryArray = str_split($binaryString, 8);
+        $decodedString = '';
+
+        foreach ($binaryArray as $binary) {
+            $decodedString .= chr((int)base_convert($binary, 2, 10));
+        }
+
+        return $decodedString;
     }
 }
